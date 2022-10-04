@@ -1,9 +1,29 @@
-import pyttsx3 
-import speech_recognition as sr 
-import wikipedia 
+import subprocess
+import wolframalpha
+import pyttsx3
+import tkinter
+import json
+import random
+import operator
+import speech_recognition as sr
+import datetime
+import wikipedia
 import webbrowser
 import os
+import winshell
+import pyjokes
+import feedparser
 import smtplib
+import ctypes
+import time
+import requests
+import shutil
+from twilio.rest import Client
+from clint.textui import progress
+from ecapture import ecapture as ec
+from bs4 import BeautifulSoup
+import win32com.client as wincl
+from urllib.request import urlopen
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -39,19 +59,73 @@ def takeCommand():
 
 
 if __name__ == "__main__":
-    wishMe()
-    while True:
+    	clear = lambda: os.system('cls')
+	
+	
+	clear()
+	wishMe()
+	username()
+	
+	while True:
+		
+		query = takeCommand().lower()
+		
+	
+		if 'wikipedia' in query:
+			speak('Searching Wikipedia...')
+			query = query.replace("wikipedia", "")
+			results = wikipedia.summary(query, sentences = 3)
+			speak("According to Wikipedia")
+			print(results)
+			speak(results)
 
-        query = takeCommand().lower()
-        if 'wikipedia' in query:
-            speak('Searching ')
-            query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences=2)
-            speak("According to Wikipedia")
-            print(results)
-            speak(results)
+		elif 'open youtube' in query:
+			speak("Here you go to Youtube\n")
+			webbrowser.open("youtube.com")
 
-       
-        elif "bye" in query:
-            speak("Bye Sir.")
-            exit()
+		elif 'open google' in query:
+			speak("Here you go to Google\n")
+			webbrowser.open("google.com")
+
+		elif 'open stackoverflow' in query:
+			speak("Here you go to Stack Over flow.Happy coding")
+			webbrowser.open("stackoverflow.com")
+
+	
+
+	
+		elif 'how are you' in query:
+			speak("I am fine, Thank you")
+			speak("How are you, Sir")
+
+		elif 'fine' in query or "good" in query:
+			speak("It's good to know that your fine")
+
+	
+
+		elif 'exit' in query:
+			speak("Thanks for giving me your time")
+			exit()
+
+		elif "who made you" in query or "who created you" in query:
+			speak("I have been created by Nikhil.")
+			
+		elif 'joke' in query:
+			speak(pyjokes.get_joke())
+			
+
+		elif "wikipedia" in query:
+			webbrowser.open("wikipedia.com")
+
+		elif "Good Morning" in query:
+			speak("A warm" +query)
+			speak("How are you Mister")
+			speak(assname)
+
+	
+		elif "how are you" in query:
+			speak("I'm fine, glad you me that")
+
+	
+
+	
